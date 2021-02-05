@@ -6,8 +6,7 @@ export default async (req, res) => {
   const dbData = await db
     .collection("Data")
     .find({})
-    .sort({ })
-    .limit(100)
+    .sort({})
     .toArray();
 
   res.json(dbData);

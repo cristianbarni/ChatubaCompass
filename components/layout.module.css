@@ -20,7 +20,6 @@
   .row {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
     width: 30vw;
   }
   
@@ -30,3 +29,13 @@
     flex-basis: 100%;
     flex: 1;
   }
+
+.plot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1cm;
+  margin-left: 5cm;
+  margin-right: 5cm;
+  flex-shrink: 1;
+}
