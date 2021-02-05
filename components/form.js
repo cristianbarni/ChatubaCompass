@@ -1,7 +1,7 @@
 import React from 'react'
 import InputRange from 'react-input-range'
 import "react-input-range/lib/css/index.css"
-import styles from './layout.module.css'
+import styles from "./form.module.css"
 
 export default class Form extends React.Component {
     constructor(props) {
@@ -27,9 +27,13 @@ export default class Form extends React.Component {
     }
 
     handleSubmit(event) {
-        
 
-        alert('Nova avaliação para ' + this.state.name);
+
+        alert(
+            'Nova avaliação para ' + this.state.name +
+            '\nLara-Pierri: ' + this.state.LP +
+            '\nSchons-Gonini: ' + this.state.SG
+            );
         event.preventDefault();
         this.setState({
             name: "",
@@ -40,58 +44,57 @@ export default class Form extends React.Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} className={styles.form}>
-                <label className={styles.form}>
-                    Nome:
-                    <select name="name" value={this.state.name} required onChange={this.handleInputChange}>
-                        <option value="" disabled hidden />
-                        <option value="Pierri">Pierri</option>
-                        <option value="Gonini">Gonini</option>
-                        <option value="Kula">Kula</option>
-                    </select>
-                    <br />
-                </label>
-                <label className={styles.form}>
-                    <div className={styles.row}>
-                        <div className={styles.column}>Schons</div>
-                        <div >Gonini</div>
-                    </div>
-                    <br />
-                    <div className={styles.slider}>
-                        <InputRange
-                        name="SG"
-                        minValue={-10}
-                        maxValue={10}
-                        step={1}
-                        value={this.state.SG}
-                        onChange={value => this.setState({ SG: value })}
-                        onChangeComplete={value => this.setState({ SG: value })}
-                        />
-                    </div>
-                <br />
-                </label>
+            <form onSubmit={this.handleSubmit}>
 
-                <label className={styles.form}>
-                    <div className={styles.row}>
-                        <div className={styles.column}>Lara</div>
-                        <div >Pierri</div>
+                <div className={styles.flexContainer}>
+                    <div className={styles.namesContainer}>
+                        <div className={styles.flexChildLeft}>Nome:</div>
+                        <div className={styles.flexChildRight}>
+                            <select name="name" value={this.state.name} required onChange={this.handleInputChange}>
+                                <option value="" disabled hidden />
+                                <option value="Pierri">Pierri</option>
+                                <option value="Gonini">Gonini</option>
+                                <option value="Kula">Kula</option>
+                            </select>
+                        </div>
                     </div>
-                    <br />
-                    <div className={styles.slider}>
-                        <InputRange
-                        name="LP"
-                        minValue={-10}
-                        maxValue={10}
-                        step={1}
-                        value={this.state.LP}
-                        onChange={value => this.setState({ LP: value })}
-                        onChangeComplete={value => this.setState({ LP: value })}
-                        />
-                    </div>
-                <br />
-                </label>
 
-                <input type="submit" value="Enviar" />
+                    <div className={styles.slidersContainer}>
+                        <div className={styles.flexChildLeft}>Lara</div>
+                        <div className={styles.flexChildCenter}>
+                            <InputRange
+                                name="LP"
+                                minValue={-10}
+                                maxValue={10}
+                                step={1}
+                                value={this.state.LP}
+                                onChange={value => this.setState({ LP: value })}
+                                onChangeComplete={value => this.setState({ LP: value })}
+                            />
+                        </div>
+                        <div className={styles.flexChildRight}>Pierri</div>
+                    </div>
+
+                    <div className={styles.slidersContainer}>
+                        <div className={styles.flexChildLeft}>Schons</div>
+                        <div className={styles.flexChildCenter}>
+                            <InputRange
+                                name="SG"
+                                minValue={-10}
+                                maxValue={10}
+                                step={1}
+                                value={this.state.SG}
+                                onChange={value => this.setState({ SG: value })}
+                                onChangeComplete={value => this.setState({ SG: value })}
+                            />
+                        </div>
+                        <div className={styles.flexChildRight}>Gonini</div>
+                    </div>
+
+                    <div className={styles.submitContainer}>
+                        <input type="submit" value="Enviar" />
+                    </div>
+                </div>  
             </form>
 
         );
