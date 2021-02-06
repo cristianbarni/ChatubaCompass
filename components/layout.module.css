@@ -33,9 +33,6 @@
 .plot {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 1cm;
-  margin-left: 5cm;
-  margin-right: 5cm;
-  flex-shrink: 1;
+  flex: 0 1 auto;
+  margin-top: 2%;
 }
