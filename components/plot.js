@@ -1,76 +1,92 @@
-import React from 'react';
+import styles from '../components/plot.module.css'
+import useSWR from 'swr'
 import { Bubble } from 'react-chartjs-2';
-import styles from '../components/layout.module.css'
 
-var options = {
-  maintainAspectRatio: true,
-  scales: {
-    yAxes: [{
-      display: true,
-      ticks: {
-        display: false,
-        suggestedMax: 10,
-        suggestedMin: -10,
-        stepSize: 1
-      },
-      scaleLabel: {
-        display: true,
-        labelString: 'Lara-Pierri'
-      }
-    }],
-    xAxes: [{
-      display: true,
-      ticks: {
-        display: false,
-        suggestedMax: 10,
-        suggestedMin: -10,
-        stepSize: 1
-      },
-      scaleLabel: {
-        display: true,
-        labelString: 'Schons-Gonini'
-      }
-    }]
-  }
-};
+const fetcher = (url) => fetch(url).then((res) => res.json())
+function getDataFromDB() {
 
-let data = {
-  datasets: []
-};
+    const { data, error } = useSWR('/api/getMembers', fetcher, { refreshInterval: 10000 })
 
-let data_id = [];
+    if (!data) return {}
 
-export default function Plot({ dbData }) {
-
-  for (let dados of dbData) {
-    if (!data_id.includes(dados._id)) {
-      data_id.push(dados._id)
-      data.datasets.push(
-        {
-          label: dados.Name,
-          backgroundColor: dados.backgroundColor,
-          borderColor: dados.borderColor,
-          data: [{ x: dados.SG, y: dados.LP, r: dados.Votes }]
-        }
-      )
-    } else {
-      console.log(data.datasets)
-      console.log(dados.Name)
-      console.log(data.datasets.includes(dados.Name))
+    var dataSet = {
+        datasets:
+            data.filter(
+                (member) => member.Votes > 0 ? true : false
+            ).map((member) => {
+                return ({
+                    label: member.Name,
+                    backgroundColor: member.backgroundColor,
+                    borderColor: member.borderColor,
+                    data: [{
+                        x: member.SG,
+                        y: member.LP,
+                        r: member.Votes
+                    }]
+                })
+            })
     }
-  }
+    return dataSet
 
-  return (
-    <div className={styles.header}>
-      <div className={styles.plot}>
-        <Bubble
-          data={data}
-          options={options}
-          width={700}
-          height={450}
-        />
-      </div>
-    </div>
-    
-  );
+}
+
+export default function Plot() {
+
+    var data = getDataFromDB()
+
+    const plotOptions = {
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+            }
+        },
+        scales: {
+            xAxis: {
+                title: {
+                    display: true,
+                    text: "Schons-Gonini",
+                    font: {
+                        family: "Exo",
+                        size: 16
+                    }
+                },
+                max: 10,
+                min: -10,
+                ticks: {
+                    display: false,
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: "Schons-Gonini"
+                }
+            },
+            yAxis: {
+                title: {
+                    display: true,
+                    text: "Lara-Pierri",
+                    font: {
+                        family: "Exo",
+                        size: 16
+                    }
+                },
+                max: 10,
+                min: -10,
+                ticks: {
+                    display: false,
+                },
+            },
+        }
+    }
+
+    return (
+        <div className={styles.plot}>
+            <Bubble
+                data={data}
+                width={1500}
+                height={500}
+                options={plotOptions}
+            />
+        </div>
+    )
 }
