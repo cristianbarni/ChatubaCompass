@@ -16,13 +16,15 @@ function nameSelector() {
     if (error) {
         // console.log(error)
         // console.log(data)
-        return <div>Failed to load Chatuba members from the Database</div>
+        return <div className={styles.placeholder}>Failed to load Chatuba members from the Database</div>
     }
-    if (!data) return <div className={styles.form_text}> Loading...</div>
+    if (!data) return <div className={styles.placeholder}>Loading...</div>
 
     // console.log(data)
-    const names = data.map((member) => { return {Name: member.Name, id:member.id} })
-    console.log(names)
+    const names = data.filter(
+        (member) => member.Name == "Chatuba" ? false : true
+    ).map((member) => { return {Name: member.Name, id:member.id} })
+    // console.log(names)
 
     return (
         <div className={styles.flexChild}>

@@ -12,14 +12,17 @@ export default async (req, res) => {
                 Name: data.Name
             }
         })
-        
+
         if (oldMember == null) {
+            const color = 'rgba(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255)
             await prisma.member.create({
                 data: {
                     Name: data.Name,
                     LP: parseFloat(data.LP),
                     SG: parseFloat(data.SG),
-                    Votes: 1
+                    Votes: 1,
+                    backgroundColor: color + ',0.05)',
+                    borderColor: color + ',1)'
                 }
             })
         } else {
@@ -35,13 +38,37 @@ export default async (req, res) => {
             })
         }
 
-        const newMember = await prisma.member.findUnique({
+        const oldMean = await prisma.member.findUnique({
             where: {
-                Name: data.Name
+                Name: "Chatuba"
             }
         })
-        // res.status(200).json(newMember)
-        console.log(newMember)
+
+        if (oldMean == null) {
+            const color = 'rgba(' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255) + ',' + Math.floor(Math.random() * 255)
+            await prisma.member.create({
+                data: {
+                    Name: "Chatuba",
+                    LP: parseFloat(data.LP),
+                    SG: parseFloat(data.SG),
+                    Votes: 1,
+                    backgroundColor: color + ',0.05)',
+                    borderColor: color + ',1)'
+                }
+            })
+        } else {
+            await prisma.member.update({
+                where: {
+                    Name: "Chatuba"
+                },
+                data: {
+                    LP: (parseFloat(oldMean.LP) * parseFloat(oldMean.Votes) + parseFloat(data.LP)) / (parseFloat(oldMean.Votes) + 1),
+                    SG: (parseFloat(oldMean.SG) * parseFloat(oldMean.Votes) + parseFloat(data.SG)) / (parseFloat(oldMean.Votes) + 1),
+                    Votes: oldMean.Votes + 1
+                }
+            })
+        }
+        
         res.status(200).redirect('/')
     } catch (err) {
         console.log(err)

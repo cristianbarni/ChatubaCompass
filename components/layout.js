@@ -17,7 +17,7 @@ export default function Layout({ siteTitle, children }) {
             <main>{children}</main>
 
             <footer>
-                <h3 className={styles.autorship}>by: Cristian Barni</h3>
+                <h3 className={styles.autorship}>by: Born</h3>
             </footer>
         </div>
     )
