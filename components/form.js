@@ -3,8 +3,8 @@ import useSWR from 'swr'
 
 let formData = {
     Name: "",
-    LP: "0",
-    SG: "0"
+    LP: 0,
+    SG: 0
 }
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
@@ -22,7 +22,7 @@ function nameSelector() {
 
     // console.log(data)
     const names = data.map((member) => { return {Name: member.Name, id:member.id} })
-    // console.log(names)
+    console.log(names)
 
     return (
         <div className={styles.flexChild}>

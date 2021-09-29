@@ -17,8 +17,8 @@ export default async (req, res) => {
             await prisma.member.create({
                 data: {
                     Name: data.Name,
-                    LP: data.LP,
-                    SG: data.SG,
+                    LP: parseFloat(data.LP),
+                    SG: parseFloat(data.SG),
                     Votes: 1
                 }
             })
