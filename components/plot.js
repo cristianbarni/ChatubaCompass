@@ -5,7 +5,7 @@ import { Bubble } from 'react-chartjs-2';
 const fetcher = (url) => fetch(url).then((res) => res.json())
 function getDataFromDB() {
 
-    const { data, error } = useSWR('/api/getMembers', fetcher, { refreshInterval: 1000 })
+    const { data, error } = useSWR('/api/getMembers', fetcher, { refreshInterval: 10000 })
 
     if (!data) return {}
 
@@ -16,6 +16,8 @@ function getDataFromDB() {
             ).map((member) => {
                 return ({
                     label: member.Name,
+                    backgroundColor: member.backgroundColor,
+                    borderColor: member.borderColor,
                     data: [{
                         x: member.SG,
                         y: member.LP,
