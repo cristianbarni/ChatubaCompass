@@ -7,6 +7,16 @@ let formData = {
     SG: 0
 }
 
+function compare( a, b ) {
+    if ( a.Name < b.Name ){
+      return -1;
+    }
+    if ( a.Name > b.Name ){
+      return 1;
+    }
+    return 0;
+  }
+
 const fetcher = (url) => fetch(url).then((res) => res.json())
 
 function nameSelector() {
@@ -23,7 +33,7 @@ function nameSelector() {
     // console.log(data)
     const names = data.filter(
         (member) => member.Name == "Chatuba" ? false : true
-    ).map((member) => { return {Name: member.Name, id:member.id} })
+    ).map((member) => { return {Name: member.Name, id:member.id} }).sort(compare)
     // console.log(names)
 
     return (
