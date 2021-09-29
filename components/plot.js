@@ -31,6 +31,7 @@ function getDataFromDB() {
                     label: member.Name,
                     backgroundColor: member.backgroundColor,
                     borderColor: member.borderColor,
+                    borderWidth: 0.2,
                     data: [{
                         x: member.SG,
                         y: member.LP,
@@ -62,9 +63,10 @@ export default function Plot() {
                         }
                     }
                 },
+                color: function(context) {
+                    return context.chart.data.datasets[context.datasetIndex].borderColor
+                },
                 formatter: function (value, context) {
-                    console.log(context.chart.data.labels)
-                    console.log(context)
                     return context.chart.data.labels[context.datasetIndex]
                 }
             },
