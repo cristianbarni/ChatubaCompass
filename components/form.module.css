@@ -1,0 +1,63 @@
+.flexContainer {
+    font-family: Exo, Verdana, Geneva, Tahoma, sans-serif;
+    min-width: 650px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.namesContainer{
+    display: flex;
+    flex: 1;
+}
+
+.slidersContainer {
+    display: flex;
+    flex: 3;
+}
+
+.submitContainer {
+    display: flex;
+    flex: 1;
+}
+
+.sliderLabel {
+    display: flex;
+    font-size: 10px;
+    justify-content: space-between;
+}
+
+.flexChild {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.flexChildCenter {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 50%;
+}
+
+/*
+.flexChildLeft {
+    margin-left: auto;
+    margin-right: 0.5vw;
+}
+
+.flexChildCenter {
+    width: 20vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+
+.flexChildRight {
+    margin-left: 0.5vw;
+    margin-right: auto;
+}
+*/
