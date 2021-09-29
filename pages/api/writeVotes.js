@@ -68,7 +68,7 @@ export default async (req, res) => {
                 }
             })
         }
-        
+
         res.status(200).redirect('/')
     } catch (err) {
         console.log(err)

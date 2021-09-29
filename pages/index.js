@@ -8,9 +8,9 @@ const siteTitle = 'Chatuba Compass V3.0'
 export default function Home() {
     return (
         <Layout siteTitle={siteTitle}>
-            
-            <Form/>
-            <Plot/>
+
+            <Form />
+            <Plot />
             {/* <NewMember/> */}
 
         </Layout>

@@ -10,7 +10,7 @@ export default async (req, res) => {
         res.status(200).json(members)
     } catch (err) {
         console.log(err)
-        res.status(403).json({err: "Error"})
+        res.status(403).json({ err: "Error" })
     }
     await prisma.$disconnect()
 }
