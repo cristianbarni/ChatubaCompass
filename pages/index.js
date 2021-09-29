@@ -1,55 +1,32 @@
-import { connectToDatabase } from '../util/mongodb'
-import ProcessedData from '../components/ProcessedData'
 import Layout from '../components/layout'
 import Form from '../components/form'
-import Plot from '../components/plot'
 
-// const data = {
-//   datasets: [
-    
-//     {
-//       label: 'jan',
-//       backgroundColor: 'rgba(75,192,192,0.4)',
-//       borderColor: 'rgba(75,192,192,1)',
-//       data: [{x:5,y:1,r:20}]
-//     },
-//     {
-//       label: 'feb',
-//       backgroundColor: 'rgba(75,20,192,0.4)',
-//       borderColor: 'rgba(75,20,192,1)',
-//       data: [{x:7,y:1,r:20}]
+const siteTitle = 'Chatuba Compass V3.0'
+
+// import useSWR from 'swr'
+
+// const fetcher = (url) => fetch(url).then((res) => res.json())
+
+// function showVotes() {
+//     const {data, error} = useSWR('./api/getMembers', fetcher, { refreshInterval: 1000 })
+
+//     if (error) {
+//         console.log(error)
+//         console.log(data)
+//         return <div>Failed to load</div>
 //     }
-//   ]
-// };
+//     if (!data) return <div> Loading...</div>
 
-export default function Home({ isConnected, dbData }) {
-  return (
-    <Layout>
+//     console.log(data)
+//     return <div>Data loaded!</div>
+// }
 
-    <Form />
+export default function Home() {
+    return (
+        <Layout siteTitle={siteTitle}>
+            
+            <Form></Form>
 
-    {/* <ProcessedData dbData={dbData} /> */}
-
-    <Plot dbData={dbData} />
-
-    </Layout>
-  )
-}
-
-export async function getServerSideProps() {
-  const { client, db } = await connectToDatabase()
-
-  const isConnected = await client.isConnected()
-
-  const data = await db
-        .collection('Data')
-        .find({})
-        .toArray();
-
-  return {
-    props: { 
-      isConnected,
-      dbData: JSON.parse(JSON.stringify(data))
-    },
-  }
+        </Layout>
+    )
 }
