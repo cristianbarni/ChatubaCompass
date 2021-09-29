@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default async (req, res) => {
+    await prisma.$connect()
     try {
         const lastMembers = await prisma.member.findMany()
         for (let member of lastMembers) {
@@ -24,4 +25,5 @@ export default async (req, res) => {
         console.log(err)
         res.status(403).json({err: "Error"})
     }
+    await prisma.$disconnect()
 }

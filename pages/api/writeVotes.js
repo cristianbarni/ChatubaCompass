@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export default async (req, res) => {
+    await prisma.$connect()
     const data = req.query
 
     try {
@@ -46,4 +47,5 @@ export default async (req, res) => {
         console.log(err)
         res.status(403).redirect('/')
     }
+    await prisma.$disconnect()
 }
