@@ -82,7 +82,7 @@ export default function Plot() {
             <Bubble
                 data={data}
                 width={1500}
-                height={600}
+                height={500}
                 options={plotOptions}
             />
         </div>

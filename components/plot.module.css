@@ -1,6 +1,5 @@
 .plot {
     position: relative;
-    margin: auto;
-    height: 80vh;
-    width: 80vw;
+    margin-left: 2%;
+    margin-right: 2%;
   }

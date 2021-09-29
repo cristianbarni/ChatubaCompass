@@ -17,6 +17,16 @@ model Member {
   LP Float
   SG Float
   Votes Int
-  backgroundColor String?
-  borderColor String?
+  backgroundColor String
+  borderColor String
+}
+
+model newMember {
+  id String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  Name String @unique
+  LP Float
+  SG Float
+  Votes Int
+  backgroundColor String
+  borderColor String
 }

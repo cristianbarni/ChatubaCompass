@@ -1,13 +1,15 @@
 .flexContainer {
     font-family: Exo, Verdana, Geneva, Tahoma, sans-serif;
     min-width: 600px;
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: baseline;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 .namesContainer{
@@ -34,8 +36,8 @@
 .flexChild {
     display: flex;
     flex-direction: column;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .flexChildCenter {
@@ -49,4 +51,10 @@
 .placeholder {
     display: flex;
     width: 35%;
+}
+
+.newMember {
+    display: flex;
+    font-family: Exo, Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 2%;
 }
