@@ -11,7 +11,7 @@ export default function Home() {
             
             <Form/>
             <Plot/>
-            <NewMember/>
+            {/* <NewMember/> */}
 
         </Layout>
     )
